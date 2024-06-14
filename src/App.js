@@ -39,7 +39,7 @@ function App() {
       <div className="container mt-4">
         <Routes>
           <Route path="/" element={<TextForm header="Enter the Text to Analyze" mode={Mode} />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/about" element={<About mode={Mode} />} />
         </Routes>
       </div>
     </Router>
