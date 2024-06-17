@@ -1,6 +1,7 @@
 # FIRST React.js project
 
-TextUtils App
+# TextUtils App
+    
     convert to Upper case
     convert to Lower case
     Copy text
