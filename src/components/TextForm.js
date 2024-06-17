@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 
 
 export default function TextForm(props) {
@@ -18,17 +18,17 @@ export default function TextForm(props) {
         setText(newText);
     }
     const handleOnChange = (event) => {
-        console.log("handleOnChange was clicked");
+
         setText(event.target.value);
     }
     const speak = () => {
         let msg = new SpeechSynthesisUtterance(text);
         const toggle = document.getElementById('toggle');
-        
+
         msg.onend = () => {
             toggle.innerHTML = "Speak";
         };
-    
+
         if (toggle.textContent === "Speak") {
             window.speechSynthesis.speak(msg);
             toggle.innerHTML = "Stop";
@@ -41,8 +41,9 @@ export default function TextForm(props) {
         let text = document.getElementById('myBox');
         text.select();
         navigator.clipboard.writeText(text.value);
+
     }
-    
+
     const countWords = (text) => {
         return text.split(/\s+/).filter(word => word.length > 0).length;
     }
@@ -50,10 +51,10 @@ export default function TextForm(props) {
     return (
         <>
             <div className="mb-3 container">
-                <h1 style={{color: props.mode==='light'? 'black': 'white'}}>{props.header}</h1>
-                
-                <textarea className="form-control mt-3" value={text} style={{backgroundColor: props.mode==='light'? 'white': '#13466e', color:props.mode==='light'? 'black': 'white'}} onChange={handleOnChange} placeholder='Enter Text here' id="myBox" rows="8"> </textarea>
-                
+                <h1 style={{ color: props.mode === 'light' ? 'black' : 'white' }}>{props.header}</h1>
+
+                <textarea className="form-control mt-3" value={text} style={{ backgroundColor: props.mode === 'light' ? 'white' : '#13466e', color: props.mode === 'light' ? 'black' : 'white' }} onChange={handleOnChange} placeholder='Enter Text here' id="myBox" rows="8"> </textarea>
+
                 <div className='d-flex'>
                     <button disabled={text.length === 0} className="btn btn-primary mt-4 my-1" onClick={handleUpClick} >Convert to Upper Case</button>
                     <button disabled={text.length === 0} className="btn btn-primary mt-4 mx-2 my-1" onClick={handleLoClick} >Convert to Lower Case</button>
@@ -62,13 +63,13 @@ export default function TextForm(props) {
                     <button disabled={text.length === 0} className="btn btn-warning mt-4 mx-2 my-1" onClick={handleClear} >Clear Text</button>
                 </div>
             </div>
-            <div className="container mt-3" style={{color: props.mode==='light'? 'black': 'white'}}>
+            <div className="container mt-3" style={{ color: props.mode === 'light' ? 'black' : 'white' }}>
                 <h1>Your text Summary</h1>
                 <p>{countWords(text)} words and {text.length} characters</p>
                 <p>{0.008 * countWords(text)} Minutes read</p>
                 <br />
                 <h2>Preview</h2>
-                <p>{text.length > 0 ? text : "Enter something to Preview here" }</p>
+                <p>{text.length > 0 ? text : "Enter something to Preview here"}</p>
             </div>
         </>
     )
